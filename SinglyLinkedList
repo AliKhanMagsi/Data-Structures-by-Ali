@@ -1,0 +1,131 @@
+package com.company;
+
+public class SinglyLinkedList<AnyType> {
+
+    Node head, tail;
+    AnyType data;
+
+    public SinglyLinkedList() {
+
+        this.head = head;
+        this.tail = tail;
+        this.data = data;
+    }
+
+    //private class
+    private class Node {
+        Node next;
+        AnyType data;
+
+        public Node(Node next, AnyType data) {
+            this.next = next;
+            this.data = data;
+        }
+    }
+
+    //addFirst
+    public void addFirst(AnyType data) {
+
+        if (head == null) {
+            Node temp = new Node(null, data);
+            head = temp;
+            tail = temp;
+
+        } else {
+            Node temp = new Node(head, data);
+            head = temp;
+        }
+    }
+
+    //addLast
+
+    public void addLast(AnyType data) {
+        if (head == null) {
+            addFirst(data);
+        } else {
+            Node temp = new Node(null, data);
+            tail.next = temp;
+            tail = temp;
+        }
+    }
+
+
+    //display and get Size
+    public void dispay() {
+        Node temp = head;
+        //int count = 0;
+        if (temp == null) {
+            System.out.println("konhai list matho na harr, hane nikur hittaa");
+
+        } else {
+            while (temp != null) {
+
+          //      ++count;
+                System.out.print(temp.data+",");
+                temp = temp.next;
+            }
+            //System.out.println("Size is :" + count);
+        }
+    }
+
+
+    //clear all nodes
+
+    public void clearAllNodes() {
+        head = null;
+        tail = null;
+
+    }
+
+
+    //is empty or not
+    public boolean isEmpty() {
+
+        if (head == null)
+            return true;
+
+        {
+
+            return false;
+
+        }
+    }
+
+
+  //find the index of node
+    public int FindNodeIndex(AnyType data){
+
+         Node temp = head;
+         int count = -1;
+
+         if (temp==null)
+             return -1;
+
+         while(temp!=null){
+
+             if(temp.data==data){
+                 count++;
+                 return count;
+              }
+             else{
+                 count++;
+                 temp = temp.next;
+             }
+         }
+         return -1;
+    }
+
+
+    // main method
+        public static void main(String[] args) {
+            SinglyLinkedList<Integer> ob = new SinglyLinkedList<Integer>();
+            ob.addFirst(23);
+            ob.addFirst(32);
+            ob.addFirst(2321);
+          //  ob.addLast(3);
+            System.out.println("index is:"+ob.FindNodeIndex(23));
+            ob.dispay();
+
+        }
+    }
+
