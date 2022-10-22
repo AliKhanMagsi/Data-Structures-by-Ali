@@ -1,0 +1,145 @@
+package com.company;
+
+public class Queue <anytype> {
+
+    Node head,tail;
+    int length;
+
+    public Queue() {
+        this.head = head;
+        this.tail = tail;
+        this.length = length;
+    }
+
+    //private class
+ private class Node{
+
+     anytype data;
+     Node next;
+
+     public Node(anytype data, Node next) {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+  // enqueue method
+    public void enqueue(anytype data){
+        if (head==null){
+           Node temp = new Node(data,null);
+           head = temp;
+           tail = temp;
+        }
+        else{
+            Node temp = new Node(data,head);
+             head = temp;
+        }
+    }
+
+      //decqueue.....
+    public void decqueue(){
+        if (head == null){
+            System.out.println("no queue to delete");
+
+        }
+        else{
+            head = head.next;
+        }
+    }
+
+    //display......
+
+    public void display(){
+        Node temp = head;
+        if (temp == null){
+            System.out.println("no queue to print data");
+        }
+        else {
+            while (temp!=null){
+                System.out.println(temp.data+"-->");
+                temp = temp.next;
+            }
+        }
+    }
+
+    // peek method to return top data
+
+    public anytype peek(){
+       Node temp = head;
+
+       if (temp==null){
+           return null;
+       }
+       else {
+           return head.data;
+       }
+    }
+
+    //get size method
+    public int getSize(){
+        Node temp = head;
+        int count = 0;
+        if (temp == null){
+            return -1;
+        }
+        else {
+            while (temp!=null){
+                ++count;
+                temp = temp.next;
+            }
+            return count;
+        }
+    }
+
+    // add a clear method that delete all the nodes
+
+    public void clearAll(){
+        head = null;
+        tail = null;
+    }
+
+    //is empty method
+
+    public boolean isEmpty(){
+        if (head==null){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+//merge method to merge two queues
+    public Queue mergeTwoQueues(Queue obj1, Queue obj2){
+
+        Queue result = obj1;
+        result.tail.next=obj2.head;
+        return result;
+    }
+
+
+
+
+    public static void main(String[] args) {
+     
+        Queue<String> obj1 = new Queue<String>();
+
+        obj1.enqueue("ali");
+        obj1.enqueue("khan");
+        obj1.enqueue("magsi");
+        obj1.display();
+        System.out.println("--------------------------");
+
+//        Queue<String> obj2 = new Queue<String>();
+//
+//        obj2.enqueue("ali");
+//        obj2.enqueue("khan");
+//        obj2.enqueue("magsi");
+//        obj2.display();
+//        System.out.println("-------------------------");
+//
+//        Queue result = obj1.mergeTwoQueues(obj1,obj2);
+//              result.display();
+//
+    }
+}
