@@ -1,0 +1,111 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.company;
+
+public class stack<anytype> {
+    stack<anytype>.Node head;
+    stack<anytype>.Node tail;
+
+    public stack() {
+        this.head = this.head;
+        this.tail = this.tail;
+    }
+
+    public void push(anytype data) {
+        stack.Node temp;
+        if (this.head == null) {
+            temp = new stack.Node(data, (stack.Node)null);
+            this.head = temp;
+            this.tail = temp;
+        } else {
+            temp = new stack.Node(data, this.head);
+            this.head = temp;
+        }
+
+    }
+
+    public void pop() {
+        stack<anytype>.Node temp = this.head;
+        if (temp == null) {
+            System.out.println("no list to pop");
+        } else {
+            this.head = temp.next;
+        }
+
+    }
+
+    public void diplay() {
+        stack<anytype>.Node temp = this.head;
+        if (temp == null) {
+            System.out.println("no list to displa data");
+        } else {
+            while(temp != null) {
+                System.out.print(temp.data + "-");
+                temp = temp.next;
+            }
+        }
+
+    }
+
+    public anytype peak() {
+        stack<anytype>.Node temp = this.head;
+        return temp == null ? null : this.head.data;
+    }
+
+    public int getSize() {
+        int count = 0;
+        stack<anytype>.Node temp = this.head;
+        if (temp == null) {
+            return -1;
+        } else {
+            while(temp != null) {
+                ++count;
+                temp = temp.next;
+            }
+
+            return count;
+        }
+    }
+
+    public void clearAllNodes() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    public boolean isEmpty() {
+        return this.head == null;
+    }
+
+    public stack merge(stack obj, stack obj1) {
+        obj.tail.next = obj1.head;
+        return obj;
+    }
+
+    public static void main(String[] args) {
+        stack<Integer> obj = new stack();
+        obj.push(3);
+        obj.push(5);
+        obj.diplay();
+        System.out.println();
+        stack<Integer> obj1 = new stack();
+        obj1.push(9);
+        obj1.push(7);
+        obj1.diplay();
+        System.out.println();
+        stack st = obj1.merge(obj, obj1);
+        st.diplay();
+    }
+
+    private class Node {
+        anytype data;
+        stack<anytype>.Node next;
+
+        public Node(anytype data, stack<anytype>.Node next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+}
