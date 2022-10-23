@@ -1,0 +1,96 @@
+package com.company;
+
+public class StackArray<anytype> {
+
+     private Node [] stack_var;
+     private int top;
+     private int length = 100;
+
+      public StackArray(){
+          stack_var =  new Node[length];
+          top = 0;
+      }
+
+
+////////private class
+
+    private class Node<anytype>{
+         anytype data;
+
+         public Node(anytype data) {
+             this.data = data;
+         }
+     }
+
+
+     //push method /////////////////
+
+    public void push(anytype data){
+         if (top == length-1){
+             System.out.println("stack is empty");
+         }
+
+
+             stack_var[top++] = new Node(data);
+
+    }
+
+   //pop
+    public anytype pop() {
+        if (top == 0) {
+
+            System.out.println("no stack");
+        }
+        anytype newdata = (anytype) stack_var[top-1].data;
+     stack_var[top--] = null;
+     return newdata;
+    }
+
+    ////////////////////////////merge/////
+
+    private StackArray mergeTwoStacks(StackArray st1, StackArray st2) {
+
+        StackArray newStack = new StackArray();
+
+        newStack.length = st1.length + st2.length;
+        for (int i = 0; i < st1.top+1; i++) {
+            newStack.push(st1.pop());
+        }
+
+        for (int i = 0; i < st2.top+1; i++) {
+            newStack.push(st2.pop());
+        }
+          return newStack;
+    }
+
+////////////display
+
+    public void display(){
+
+          for (int i= top-1; i >= 0; i--){
+              System.out.println(stack_var[i].data);
+          }
+      }
+
+    public static void main(String[] args) {
+	// write your code here
+StackArray<String> st1 = new StackArray<String>();
+        st1.push("ALi");
+        st1.push("khan");
+        st1.push("Magsi");
+          st1.display();
+        System.out.println("---------------------------------");
+
+        StackArray<String> st2 = new StackArray<String>();
+        st2.push("ALi");
+        st2.push("khan");
+        st2.push("Magsi");
+        st2.display();
+        System.out.println("---------------------------------");
+
+        StackArray result = st2.mergeTwoStacks(st1,st2);
+        result.display();
+
+
+    }
+}
